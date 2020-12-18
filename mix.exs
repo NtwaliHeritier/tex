@@ -46,7 +46,9 @@ defmodule Tex.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:phx_gen_auth, "~> 0.6.0"}
+      {:phx_gen_auth, "~> 0.6.0"},
+      {:arc_ecto, "~> 0.11.3"},
+      {:arc, "~> 0.11.0"}
     ]
   end
 

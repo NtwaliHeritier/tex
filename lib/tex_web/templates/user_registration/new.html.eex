@@ -34,7 +34,9 @@
                                 <%=password_input f, :password, placeholder: "Password", class: "py-2 my-2"%>
                             </div>
                             <%= inputs_for f, :account, fn cf -> %>
-                                <%=file_input cf, :pic, class: "py-2 my-2"%>
+                            <div class="inputs">
+                                <%=file_input cf, :image_path, class: "py-2 my-2"%>
+                            </div>
                             <%end%>
                             <%= submit "Register", class: "py-2 my-4 text-white font-weight-bold button border-0" %>
                         <%end%>

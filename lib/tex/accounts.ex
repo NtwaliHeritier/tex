@@ -5,7 +5,7 @@ defmodule Tex.Accounts do
 
   import Ecto.Query, warn: false
   alias Tex.Repo
-  alias Tex.Accounts.{User, UserToken, UserNotifier}
+  alias Tex.Accounts.{User, UserToken, UserNotifier, Account}
 
   ## Database getters
 
@@ -76,6 +76,7 @@ defmodule Tex.Accounts do
   def register_user(attrs) do
     %User{}
     |> User.registration_changeset(attrs)
+    |> Ecto.Changeset.cast_assoc(:account, with: &Account.changeset/2)
     |> Repo.insert()
   end
 
@@ -346,8 +347,6 @@ defmodule Tex.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
-
-  alias Tex.Accounts.Account
 
   @doc """
   Returns the list of accounts.

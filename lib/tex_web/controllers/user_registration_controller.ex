@@ -2,7 +2,7 @@ defmodule TexWeb.UserRegistrationController do
   use TexWeb, :controller
 
   alias Tex.Accounts
-  alias Tex.Accounts.User
+  alias Tex.Accounts.{User, Account}
   alias TexWeb.UserAuth
 
   def new(conn, _params) do
@@ -18,11 +18,10 @@ defmodule TexWeb.UserRegistrationController do
             user,
             &Routes.user_confirmation_url(conn, :confirm, &1)
           )
-
         conn
         |> put_flash(:info, "User created successfully.")
         |> UserAuth.log_in_user(user)
-
+        
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
