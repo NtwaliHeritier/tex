@@ -4,6 +4,13 @@
 import "../css/app.scss"
 import 'bootstrap'
 
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
+
+
+library.add(faCheck);
+dom.watch();
+
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
 // in "webpack.config.js".
