@@ -501,4 +501,77 @@ defmodule Tex.AccountsTest do
       refute inspect(%User{password: "123456"}) =~ "password: \"123456\""
     end
   end
+
+  describe "accounts" do
+    alias Tex.Accounts.Account
+
+    @valid_attrs %{city: "some city", country: "some country", first_name: "some first_name", gender: "some gender", image_path: "some image_path", last_name: "some last_name", phone: "some phone", username: "some username"}
+    @update_attrs %{city: "some updated city", country: "some updated country", first_name: "some updated first_name", gender: "some updated gender", image_path: "some updated image_path", last_name: "some updated last_name", phone: "some updated phone", username: "some updated username"}
+    @invalid_attrs %{city: nil, country: nil, first_name: nil, gender: nil, image_path: nil, last_name: nil, phone: nil, username: nil}
+
+    def account_fixture(attrs \\ %{}) do
+      {:ok, account} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Accounts.create_account()
+
+      account
+    end
+
+    test "list_accounts/0 returns all accounts" do
+      account = account_fixture()
+      assert Accounts.list_accounts() == [account]
+    end
+
+    test "get_account!/1 returns the account with given id" do
+      account = account_fixture()
+      assert Accounts.get_account!(account.id) == account
+    end
+
+    test "create_account/1 with valid data creates a account" do
+      assert {:ok, %Account{} = account} = Accounts.create_account(@valid_attrs)
+      assert account.city == "some city"
+      assert account.country == "some country"
+      assert account.first_name == "some first_name"
+      assert account.gender == "some gender"
+      assert account.image_path == "some image_path"
+      assert account.last_name == "some last_name"
+      assert account.phone == "some phone"
+      assert account.username == "some username"
+    end
+
+    test "create_account/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_account(@invalid_attrs)
+    end
+
+    test "update_account/2 with valid data updates the account" do
+      account = account_fixture()
+      assert {:ok, %Account{} = account} = Accounts.update_account(account, @update_attrs)
+      assert account.city == "some updated city"
+      assert account.country == "some updated country"
+      assert account.first_name == "some updated first_name"
+      assert account.gender == "some updated gender"
+      assert account.image_path == "some updated image_path"
+      assert account.last_name == "some updated last_name"
+      assert account.phone == "some updated phone"
+      assert account.username == "some updated username"
+    end
+
+    test "update_account/2 with invalid data returns error changeset" do
+      account = account_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_account(account, @invalid_attrs)
+      assert account == Accounts.get_account!(account.id)
+    end
+
+    test "delete_account/1 deletes the account" do
+      account = account_fixture()
+      assert {:ok, %Account{}} = Accounts.delete_account(account)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_account!(account.id) end
+    end
+
+    test "change_account/1 returns a account changeset" do
+      account = account_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_account(account)
+    end
+  end
 end
