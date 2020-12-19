@@ -64,6 +64,7 @@ $height: 15vh;
 
 .topics {
     display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     width: 72%;
     .columns {
@@ -87,6 +88,10 @@ $height: 15vh;
 
 .topic-title {
     padding-top: 25px;
+    p {
+        width: 95%;
+        margin: 0 auto 1%;
+    }
 }
 
 .topic-img {

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Tex · Phoenix Framework</title>
+    <title>Tex</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
@@ -13,7 +13,7 @@
     <input type="checkbox" id="check">
     <label for="check" id="btn"><i class="fa fa-bars text-white"></i></label>
     <label for="check" id="cancel"><i class="fa fa-times text-white"></i></label>
-    <h1 class="text-center mt-3 font-weight-bold">тєχ</h1>
+    <h1 class="text-center mt-3 font-weight-bold"><%=link "тєχ", to: Routes.post_path(@conn, :index), class: "text-dark"%></h1>
     <div class="sidebar">
         <div class="side-container">
           <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.get_user!(@current_user.id).account.image_path, []}))%>">

@@ -1,27 +1,17 @@
-<h1>Show Post</h1>
-
-<ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
-
-  <li>
-    <strong>Content:</strong>
-    <%= @post.content %>
-  </li>
-
-  <li>
-    <strong>Image:</strong>
-    <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({@post.image, []}))%>">
-  </li>
-  <li>
-    <strong>Email:</strong>
-    <%= @post.user.email %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span>
-<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+<div class="post-image mt-5">
+        <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({@post.image, []}))%>" alt="">
+    </div>
+    <div class="post-specs">
+        <div class="post-heading mt-5">
+            <div class="author-info">
+                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.get_user!(@post.user.id).account.image_path, []}))%>" alt="">
+                <span><%=String.capitalize(Tex.Accounts.get_user!(@post.user.id).account.username)%></span>
+            </div>
+            <div class="post-likes">
+                <span><i class="fa fa-comment"></i> 100 Comments</span>
+                <span><i class="fa fa-heart"></i> 100 likes</span>
+            </div>
+        </div>
+        <h4 class="text-center mt-4 mb-2 font-weight-bold"><%= @post.title%></h4>
+        <p class="mt-3"><%= @post.content %>/p>
+    </div>

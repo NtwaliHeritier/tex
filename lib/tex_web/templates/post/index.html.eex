@@ -11,7 +11,7 @@
                     <div class="topic-img">
                         <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>" alt="">
                     </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center"><%= post.title%></p></div>
+                    <div class="topic-title bg-white"><p class="font-weight-bold text-center"><%= String.slice(post.title, 0, 40)%><%= link "...  read more", to: Routes.post_path(@conn, :show, post), class: "text-secondary" %></p></div>
                     <div class="topic-specs d-flex justify-content-between p-2">
                         <div class="topic-like">
                           <i class="fa fa-heart"></i><span> 100</span>
