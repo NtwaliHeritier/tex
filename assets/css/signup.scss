@@ -69,7 +69,7 @@
     border-radius: 20px;
   }
   
-  .inputs input, .inputs select {
+  .inputs .input, .inputs .select {
     width: 100%;
     text-indent: 20px;
     border-radius: 20px;
@@ -84,8 +84,8 @@
     border-radius: 20px;
   }
   
-  input, select {
-    background-color: rgba(255, 255, 255, 0.6);
+  .input, .select {
+    background-color: rgba(54, 49, 49, 0.6);
   }
   
   .anchors p {
