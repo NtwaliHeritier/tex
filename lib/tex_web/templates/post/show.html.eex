@@ -4,8 +4,8 @@
     <div class="post-specs">
         <div class="post-heading mt-5">
             <div class="author-info">
-                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.get_user!(@post.user.id).account.image_path, []}))%>" alt="">
-                <span><%=String.capitalize(Tex.Accounts.get_user!(@post.user.id).account.username)%></span>
+                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.image_path, []}))%>" alt="">
+                <span><%=String.capitalize(Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.username)%></span>
             </div>
             <div class="post-likes">
                 <span><i class="fa fa-comment"></i> 100 Comments</span>
