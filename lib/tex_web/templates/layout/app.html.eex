@@ -9,25 +9,27 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <header>
-      <section>
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-          <%= render "_user_menu.html", assigns %>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
+    <input type="checkbox" id="check">
+    <label for="check" id="btn"><i class="fa fa-bars text-white"></i></label>
+    <label for="check" id="cancel"><i class="fa fa-times text-white"></i></label>
+    <h1 class="text-center mt-3 font-weight-bold">тєχ</h1>
+    <div class="sidebar">
+        <div class="side-container">
+          <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.get_user!(@current_user.id).account.image_path, []}))%>">
+          <h5 class="text-white mt-3">Hatsor</h5>
+        </div>
+        <ul>
+            <li><%=link "Add post", to: Routes.post_path(@conn, :new), class: "a"%></li>
+            <li><%=link "Home", to: Routes.post_path(@conn, :index), class: "a"%></li>
+        </ul>
+    </div>
     <main role="main">
+      <%= if get_flash(@conn, :info) do %>
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
       <%= @inner_content %>
       <i class="fa fa-check"></i>
       <i class="fa fa-eye"></i>

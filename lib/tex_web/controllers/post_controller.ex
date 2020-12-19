@@ -4,6 +4,9 @@ defmodule TexWeb.PostController do
   alias Tex.Articles
   alias Tex.Articles.Post
 
+  import TexWeb.UserAuth, only: [require_authenticated_user: 2]
+  plug :require_authenticated_user
+
   def index(conn, _params) do
     posts = Articles.list_posts()
     render(conn, "index.html", posts: posts)

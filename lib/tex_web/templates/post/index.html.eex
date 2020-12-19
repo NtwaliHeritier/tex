@@ -1,4 +1,3 @@
-<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
 <main class="main">
           <section class="post-topics">
             <div class="topics">
