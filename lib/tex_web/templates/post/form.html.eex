@@ -1,23 +1,25 @@
-<%= form_for @changeset, @action, [multipart: true], fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
-
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
-
-  <%= label f, :content %>
-  <%= textarea f, :content %>
-  <%= error_tag f, :content %>
-
-  <%= label f, :image %>
-  <%= file_input f, :image %>
-  <%= error_tag f, :image %>
-
-  <div>
-    <%= submit "Save" %>
-  </div>
-<% end %>
+                  <main class="content">
+                    <div class="form-container">
+                        <%= form_for @changeset, @action, [multipart: true], fn f -> %>
+                            <%= if @changeset.action do %>
+                              <div class="alert alert-danger">
+                                <p>Oops, something went wrong! Please check the errors below.</p>
+                              </div>
+                            <% end %>
+                            <div class="inputs">
+                                <%= text_input f, :title, placeholder: "Title", class: "py-2 my-2 input" %>
+                                <%= error_tag f, :title %>
+                            </div>
+                            <div class="inputs">
+                                <%# <textarea class="w-100 rounded" rows="5"></textarea> %>
+                                <%= textarea f, :content, placeholder: "Content", class: "w-100 rounded input" %>
+                                <%= error_tag f, :content %>
+                            </div>
+                            <div class="inputs">
+                                <%= file_input f, :image, class: "py-2 my-2 input" %>
+                                <%= error_tag f, :image%>
+                            </div>
+                            <%= submit "POST", class: "py-2 my-4 text-white font-weight-bold button border-0" %>
+                        <% end %>
+                    </div>
+                  </main>
