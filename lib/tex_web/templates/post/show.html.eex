@@ -1,0 +1,27 @@
+<h1>Show Post</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Content:</strong>
+    <%= @post.content %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({@post.image, []}))%>">
+  </li>
+  <li>
+    <strong>Email:</strong>
+    <%= @post.user.email %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span>
+<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>

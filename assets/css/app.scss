@@ -2,6 +2,14 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import "./phoenix.css";
 @import "./signup.scss";
+@import "./posts.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
 
 /* Alerts and form errors */
 .alert {

@@ -18,7 +18,7 @@ defmodule TexWeb.Router do
 
   scope "/", TexWeb do
     pipe_through :browser
-
+    resources "/posts", PostController
     get "/", PageController, :index
   end
 

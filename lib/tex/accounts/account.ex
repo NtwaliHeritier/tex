@@ -2,6 +2,7 @@ defmodule Tex.Accounts.Account do
   use Ecto.Schema
   use Arc.Ecto.Schema
   import Ecto.Changeset
+  alias Tex.Accounts.User
 
   schema "accounts" do
     field :city, :string
@@ -12,7 +13,7 @@ defmodule Tex.Accounts.Account do
     field :last_name, :string
     field :phone, :string
     field :username, :string
-    belongs_to :user, Tex.Accounts.User
+    belongs_to :user, User
 
     timestamps()
   end

@@ -2,7 +2,7 @@ defmodule TexWeb.UserRegistrationController do
   use TexWeb, :controller
 
   alias Tex.Accounts
-  alias Tex.Accounts.{User, Account}
+  alias Tex.Accounts.User
   alias TexWeb.UserAuth
 
   def new(conn, _params) do
