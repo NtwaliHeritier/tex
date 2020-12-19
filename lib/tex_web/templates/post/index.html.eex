@@ -1,5 +1,9 @@
 <main class="main">
           <section class="post-topics">
+            <%=if length(@posts) == 0 do%>
+            <h1>No posts to show</h1>
+            <%end%>
+            <%= if length(@posts) != 0 do%>
             <div class="topics">
             <%= for post <- @posts do %>
               <div class="columns">
@@ -24,6 +28,7 @@
               </div>
               <%end%>
             </div>
+            <% end %>
             <div class="side">
               <div class="top-read">
                 <h5 class="text-center py-3">MOST READ</h5>

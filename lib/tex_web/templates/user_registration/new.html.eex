@@ -7,6 +7,11 @@
                 <main class="content">
                     <div class="form-container">
                         <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [multipart: true], fn f -> %>
+                            <%= if @changeset.action do %>
+                                <div class="alert alert-danger">
+                                <p>Oops, something went wrong! Please check the errors below.</p>
+                                </div>
+                            <% end %>                            
                             <%= inputs_for f, :account, fn cf -> %>
                             <div class="input-flex">
                                 <%=text_input cf, :first_name, placeholder: "First name", class: "py-2 my-2 input"%>
@@ -41,7 +46,7 @@
                             <%= submit "Register", class: "py-2 my-4 text-white font-weight-bold button border-0 button" %>
                         <%end%>
                         <div class="anchors">
-                            <p>Already have an account? <%=link "Login", to: Routes.user_session_path(@conn, :new), class: "font-weight-bold"%></p>
+                            <p>Already have an account? <%=link "LOGIN", to: Routes.user_session_path(@conn, :new), class: "font-weight-bold"%></p>
                         </div>
                     </div>
                 </main>
