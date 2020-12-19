@@ -1,176 +1,29 @@
-<h1>Listing Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Image</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td><img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>"></td>
-
-      <td>
-        <span><%= link "Show", to: Routes.post_path(@conn, :show, post) %></span>
-        <span><%= link "Edit", to: Routes.post_path(@conn, :edit, post) %></span>
-        <span><%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
 <span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
 <main class="main">
           <section class="post-topics">
             <div class="topics">
-              <div class="columns">
-                  <div class="d-flex topic flex-column">
-                      <div class="topic-img">
-                          <img src="./images/Capture.PNG" alt="">
-                      </div>
-                      <div class="topic-title bg-white"><p class="font-weight-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p></div>
-                      <div class="topic-specs d-flex justify-content-between p-2">
-                          <div class="topic-like">
-                            <i class="fas fa-heart"></i><span> 100</span>
-                          </div>
-                          <div class="topic-comment">
-                            <i class="fas fa-comment"></i><span> 100</span>
-                          </div>
-                          <div class="topic-view">
-                            <i class="fas fa-eye"></i><span> 100</span>
-                          </div>
-                      </div>
-                  </div>
-                    <img src="./images/Capture.PNG" class="topic-author" alt="">
-              </div>
+            <%= for post <- @posts do %>
               <div class="columns">
                 <div class="d-flex topic flex-column">
                     <div class="topic-img">
-                        <img src="./images/Capture.PNG" alt="">
+                        <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>" alt="">
                     </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p></div>
+                    <div class="topic-title bg-white"><p class="font-weight-bold text-center"><%= post.title%></p></div>
                     <div class="topic-specs d-flex justify-content-between p-2">
                         <div class="topic-like">
-                          <i class="fas fa-heart"></i><span> 100</span>
+                          <i class="fa fa-heart"></i><span> 100</span>
                         </div>
                         <div class="topic-comment">
-                          <i class="fas fa-comment"></i><span> 100</span>
+                          <i class="fa fa-comment"></i><span> 100</span>
                         </div>
                         <div class="topic-view">
-                          <i class="fas fa-eye"></i><span> 100</span>
+                          <i class="fa fa-eye"></i><span> 100</span>
                         </div>
                     </div>
                 </div>
-                <img src="./images/Capture.PNG" class="topic-author" alt="">
+                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" class="topic-author" alt="">
               </div>
-              <div class="columns">
-                <div class="d-flex topic flex-column">
-                    <div class="topic-img">
-                        <img src="./images/Capture.PNG" alt="">
-                    </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p></div>
-                    <div class="topic-specs d-flex justify-content-between p-2">
-                        <div class="topic-like">
-                          <i class="fas fa-heart"></i><span> 100</span>
-                        </div>
-                        <div class="topic-comment">
-                          <i class="fas fa-comment"></i><span> 100</span>
-                        </div>
-                        <div class="topic-view">
-                          <i class="fas fa-eye"></i><span> 100</span>
-                        </div>
-                    </div>
-                </div>
-                <img src="./images/Capture.PNG" class="topic-author" alt="">
-              </div>
-              <div class="columns">
-                <div class="d-flex topic flex-column">
-                    <div class="topic-img">
-                        <img src="./images/Capture.PNG" alt="">
-                    </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p></div>
-                    <div class="topic-specs d-flex justify-content-between p-2">
-                        <div class="topic-like">
-                          <i class="fas fa-heart"></i><span> 100</span>
-                        </div>
-                        <div class="topic-comment">
-                          <i class="fas fa-comment"></i><span> 100</span>
-                        </div>
-                        <div class="topic-view">
-                          <i class="fas fa-eye"></i><span> 100</span>
-                        </div>
-                    </div>
-                </div>
-                <img src="./images/Capture.PNG" class="topic-author" alt="">
-              </div>
-              <div class="columns">
-                <div class="d-flex topic flex-column">
-                    <div class="topic-img">
-                        <img src="./images/Capture.PNG" alt="">
-                    </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p></div>
-                    <div class="topic-specs d-flex justify-content-between p-2">
-                        <div class="topic-like">
-                          <i class="fas fa-heart"></i><span> 100</span>
-                        </div>
-                        <div class="topic-comment">
-                          <i class="fas fa-comment"></i><span> 100</span>
-                        </div>
-                        <div class="topic-view">
-                          <i class="fas fa-eye"></i><span> 100</span>
-                        </div>
-                    </div>
-                </div>
-                <img src="./images/Capture.PNG" class="topic-author" alt="">
-              </div>
-              <div class="columns">
-                <div class="d-flex topic flex-column">
-                    <div class="topic-img">
-                        <img src="./images/Capture.PNG" alt="">
-                    </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p></div>
-                    <div class="topic-specs d-flex justify-content-between p-2">
-                        <div class="topic-like">
-                          <i class="fas fa-heart"></i><span> 100</span>
-                        </div>
-                        <div class="topic-comment">
-                          <i class="fas fa-comment"></i><span> 100</span>
-                        </div>
-                        <div class="topic-view">
-                          <i class="fas fa-eye"></i><span> 100</span>
-                        </div>
-                    </div>
-                </div>
-                <img src="./images/Capture.PNG" class="topic-author" alt="">
-              </div>
-              <div class="columns">
-                <div class="d-flex topic flex-column">
-                    <div class="topic-img">
-                        <img src="./images/Capture.PNG" alt="">
-                    </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p></div>
-                    <div class="topic-specs d-flex justify-content-between p-2">
-                        <div class="topic-like">
-                          <i class="fas fa-heart"></i><span> 100</span>
-                        </div>
-                        <div class="topic-comment">
-                          <i class="fas fa-comment"></i><span> 100</span>
-                        </div>
-                        <div class="topic-view">
-                          <i class="fas fa-eye"></i><span> 100</span>
-                        </div>
-                    </div>
-                </div>
-                <img src="./images/Capture.PNG" class="topic-author" alt="">
-              </div>
+              <%end%>
             </div>
             <div class="side">
               <div class="top-read">

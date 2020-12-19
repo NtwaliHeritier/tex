@@ -29,8 +29,9 @@
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
-      <i class="fas fa-check"></i>
-      <i class="fas fa-eye"></i>
+      <i class="fa fa-check"></i>
+      <i class="fa fa-eye"></i>
+      <i class="fa fa-check fa-lg"></i>
     </main>
   </body>
 </html>

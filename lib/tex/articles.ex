@@ -20,7 +20,7 @@ defmodule Tex.Articles do
   def list_posts do
     Post
     |> Repo.all
-    |> Repo.preload(:user)
+    |> Repo.preload(user: :account)
   end
 
   @doc """
@@ -40,7 +40,7 @@ defmodule Tex.Articles do
   def get_post!(id) do
     Post
     |> Repo.get!(id)
-    |> Repo.preload(:user)
+    |> Repo.preload(user: :account)
   end
   @doc """
   Creates a post.
