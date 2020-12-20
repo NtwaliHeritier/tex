@@ -35,5 +35,6 @@
       <% end %>
       <%= @inner_content %>
     </main>
+    <div class="mt-5"></div>
   </body>
 </html>

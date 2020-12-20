@@ -21,6 +21,8 @@ defmodule Tex.Articles do
     Post
     |> Repo.all
     |> Repo.preload(user: :account)
+    |> Repo.preload(:likes)
+    |> Repo.preload(:views)
   end
 
   @doc """
@@ -42,6 +44,7 @@ defmodule Tex.Articles do
     |> Repo.get!(id)
     |> Repo.preload(user: :account)
     |> Repo.preload(:likes)
+    |> Repo.preload(:views)
   end
   @doc """
   Creates a post.
@@ -205,5 +208,103 @@ defmodule Tex.Articles do
   """
   def change_like(%Like{} = like, attrs \\ %{}) do
     Like.changeset(like, attrs)
+  end
+
+  alias Tex.Articles.View
+
+  @doc """
+  Returns the list of views.
+
+  ## Examples
+
+      iex> list_views()
+      [%View{}, ...]
+
+  """
+  def list_views do
+    Repo.all(View)
+  end
+
+  @doc """
+  Gets a single view.
+
+  Raises `Ecto.NoResultsError` if the View does not exist.
+
+  ## Examples
+
+      iex> get_view!(123)
+      %View{}
+
+      iex> get_view!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_view!(id), do: Repo.get!(View, id)
+
+  @doc """
+  Creates a view.
+
+  ## Examples
+
+      iex> create_view(%{field: value})
+      {:ok, %View{}}
+
+      iex> create_view(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_view(user_id, post_id, attrs \\ %{}) do
+    %View{}
+    |> View.changeset(attrs)
+    |> Ecto.Changeset.put_change(:user_id, user_id)
+    |> Ecto.Changeset.put_change(:post_id, post_id)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a view.
+
+  ## Examples
+
+      iex> update_view(view, %{field: new_value})
+      {:ok, %View{}}
+
+      iex> update_view(view, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_view(%View{} = view, attrs) do
+    view
+    |> View.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a view.
+
+  ## Examples
+
+      iex> delete_view(view)
+      {:ok, %View{}}
+
+      iex> delete_view(view)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_view(%View{} = view) do
+    Repo.delete(view)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking view changes.
+
+  ## Examples
+
+      iex> change_view(view)
+      %Ecto.Changeset{data: %View{}}
+
+  """
+  def change_view(%View{} = view, attrs \\ %{}) do
+    View.changeset(view, attrs)
   end
 end

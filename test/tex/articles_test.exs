@@ -122,4 +122,61 @@ defmodule Tex.ArticlesTest do
       assert %Ecto.Changeset{} = Articles.change_like(like)
     end
   end
+
+  describe "views" do
+    alias Tex.Articles.View
+
+    @valid_attrs %{}
+    @update_attrs %{}
+    @invalid_attrs %{}
+
+    def view_fixture(attrs \\ %{}) do
+      {:ok, view} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Articles.create_view()
+
+      view
+    end
+
+    test "list_views/0 returns all views" do
+      view = view_fixture()
+      assert Articles.list_views() == [view]
+    end
+
+    test "get_view!/1 returns the view with given id" do
+      view = view_fixture()
+      assert Articles.get_view!(view.id) == view
+    end
+
+    test "create_view/1 with valid data creates a view" do
+      assert {:ok, %View{} = view} = Articles.create_view(@valid_attrs)
+    end
+
+    test "create_view/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Articles.create_view(@invalid_attrs)
+    end
+
+    test "update_view/2 with valid data updates the view" do
+      view = view_fixture()
+      assert {:ok, %View{} = view} = Articles.update_view(view, @update_attrs)
+    end
+
+    test "update_view/2 with invalid data returns error changeset" do
+      view = view_fixture()
+      assert {:error, %Ecto.Changeset{}} = Articles.update_view(view, @invalid_attrs)
+      assert view == Articles.get_view!(view.id)
+    end
+
+    test "delete_view/1 deletes the view" do
+      view = view_fixture()
+      assert {:ok, %View{}} = Articles.delete_view(view)
+      assert_raise Ecto.NoResultsError, fn -> Articles.get_view!(view.id) end
+    end
+
+    test "change_view/1 returns a view changeset" do
+      view = view_fixture()
+      assert %Ecto.Changeset{} = Articles.change_view(view)
+    end
+  end
 end

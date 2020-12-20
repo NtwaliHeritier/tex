@@ -11,16 +11,21 @@
                     <div class="topic-img">
                         <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>" alt="">
                     </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center"><%= String.slice(post.title, 0, 40)%><%= link "...  read more", to: Routes.post_path(@conn, :show, post), class: "text-secondary" %></p></div>
+                    <div class="topic-title bg-white"><p class="font-weight-bold text-center"><%= String.slice(post.title, 0, 50)%>...
+                    <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
+                      <%= hidden_input f, :post_id, value: post.id%>
+                      <%= submit "read more", class: "mb-2 like-btn text-secondary d-inline"%>
+                    <% end %>
+                    </p></div>
                     <div class="topic-specs d-flex justify-content-between p-2">
                         <div class="topic-like">
-                          <i class="fa fa-heart"></i><span> 100</span>
+                          <i class="fa fa-heart"></i><span> <%= length(post.likes)%></span>
                         </div>
                         <div class="topic-comment">
                           <i class="fa fa-comment"></i><span> 100</span>
                         </div>
                         <div class="topic-view">
-                          <i class="fa fa-eye"></i><span> 100</span>
+                          <i class="fa fa-eye"></i><span> <%= length(post.views)%></span>
                         </div>
                     </div>
                 </div>
