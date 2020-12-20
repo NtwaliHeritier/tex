@@ -1,5 +1,8 @@
 defmodule TexWeb.PostController do
   use TexWeb, :controller
+  import Tex.Articles.Featured
+  plug :liked_posts
+  plug :viewed_posts
 
   alias Tex.Articles
   alias Tex.Articles.Post

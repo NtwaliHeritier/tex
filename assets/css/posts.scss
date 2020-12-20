@@ -101,6 +101,12 @@ $height: 15vh;
     }
 }
 
+.submit-btn {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .columns {
         width: 31% !important;

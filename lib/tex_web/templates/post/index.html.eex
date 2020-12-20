@@ -14,7 +14,7 @@
                     <div class="topic-title bg-white"><p class="font-weight-bold text-center"><%= String.slice(post.title, 0, 50)%>...
                     <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
                       <%= hidden_input f, :post_id, value: post.id%>
-                      <%= submit "read more", class: "mb-2 like-btn text-secondary d-inline"%>
+                      <%= submit "read more", class: "mb-2 like-btn submit-btn text-secondary"%>
                     <% end %>
                     </p></div>
                     <div class="topic-specs d-flex justify-content-between p-2">
@@ -38,97 +38,69 @@
               <div class="top-read">
                 <h5 class="text-center py-3">MOST READ</h5>
                 <div class="read-posts">
+                <%= for post <- @conn.assigns[:viewed_posts] do %>
                   <div class="read-post">
-                    <img src="./images/Capture.PNG" alt="">
+                    <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
                     <div class="read-post-content">
-                      <span class="font-weight-bold">NTWALI Heritier</span>
-                      <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, nemo.</p>
+                      <span class="font-weight-bold"><%= String.capitalize(post.user.account.username)%></span>
+                      <p class="m-0"><%= String.slice(post.title, 0, 25)%>...
+                      <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
+                      <%= hidden_input f, :post_id, value: post.id%>
+                      <%= submit "read more", class: "mb-2 like-btn submit-btn text-secondary"%>
+                    <% end %>
+                      </p>
                       <div class="content-spec">
                         <div class="content-like">
-                          <i class="fas fa-heart"></i>
-                          <span> 100</span>
+                          <i class="fa fa-heart"></i>
+                          <span> <%= length(post.likes)%></span>
                         </div>
                         <div class="content-comment">
-                          <i class="fas fa-comment"></i>
+                          <i class="fa fa-comment"></i>
                           <span> 100</span>
                         </div>
                         <div class="content-view">
-                          <i class="fas fa-eye"></i>
-                          <span> 100</span>
+                          <i class="fa fa-eye"></i>
+                          <span> <%= length(post.views)%></span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr>
-                  <div class="read-post">
-                    <img src="./images/Capture.PNG" alt="">
-                    <div class="read-post-content">
-                      <span class="font-weight-bold">NTWALI Heritier</span>
-                      <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, nemo.</p>
-                      <div class="content-spec">
-                        <div class="content-like">
-                          <i class="fas fa-heart"></i>
-                          <span> 100</span>
-                        </div>
-                        <div class="content-comment">
-                          <i class="fas fa-comment"></i>
-                          <span> 100</span>
-                        </div>
-                        <div class="content-view">
-                          <i class="fas fa-eye"></i>
-                          <span> 100</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <% end %>
                 </div>
               </div>
               <div class="top-read mt-3">
                 <h5 class="text-center py-3">MOST LIKED</h5>
                 <div class="read-posts">
+                <%= for post <- @conn.assigns[:liked_posts] do %>
                   <div class="read-post">
-                    <img src="./images/Capture.PNG" alt="">
+                    <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
                     <div class="read-post-content">
-                      <span class="font-weight-bold">NTWALI Heritier</span>
-                      <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, nemo.</p>
+                      <span class="font-weight-bold"><%= String.capitalize(post.user.account.username)%></span>
+                      <p class="m-0"><%= String.slice(post.title, 0, 35)%>...
+                      <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
+                      <%= hidden_input f, :post_id, value: post.id%>
+                      <%= submit "read more", class: "mb-2 like-btn submit-btn text-secondary"%>
+                      <% end %>
+                      </p>
                       <div class="content-spec">
                         <div class="content-like">
-                          <i class="fas fa-heart"></i>
-                          <span> 100</span>
+                          <i class="fa fa-heart"></i>
+                          <span> <%= length(post.likes)%></span>
                         </div>
                         <div class="content-comment">
-                          <i class="fas fa-comment"></i>
+                          <i class="fa fa-comment"></i>
                           <span> 100</span>
                         </div>
                         <div class="content-view">
-                          <i class="fas fa-eye"></i>
-                          <span> 100</span>
+                          <i class="fa fa-eye"></i>
+                          <span> <%= length(post.views)%></span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr>
-                  <div class="read-post">
-                    <img src="./images/Capture.PNG" alt="">
-                    <div class="read-post-content">
-                      <span class="font-weight-bold">NTWALI Heritier</span>
-                      <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, nemo.</p>
-                      <div class="content-spec">
-                        <div class="content-like">
-                          <i class="fas fa-heart"></i>
-                          <span> 100</span>
-                        </div>
-                        <div class="content-comment">
-                          <i class="fas fa-comment"></i>
-                          <span> 100</span>
-                        </div>
-                        <div class="content-view">
-                          <i class="fas fa-eye"></i>
-                          <span> 100</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <% end %>
                 </div>
               </div>
             </div>
