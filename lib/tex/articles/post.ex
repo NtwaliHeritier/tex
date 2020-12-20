@@ -3,12 +3,14 @@ defmodule Tex.Articles.Post do
   import Ecto.Changeset
   use Arc.Ecto.Schema
   alias Tex.Accounts.User
+  alias Tex.Articles.Like
 
   schema "posts" do
     field :content, :string
     field :image, Tex.ImageUploader.Type
     field :title, :string
     belongs_to :user, User
+    has_many :likes, Like
 
     timestamps()
   end

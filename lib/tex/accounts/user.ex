@@ -2,7 +2,7 @@ defmodule Tex.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Tex.Accounts.Account
-  alias Tex.Articles.Post
+  alias Tex.Articles.{Post, Like}
 
   @derive {Inspect, except: [:password]}
   schema "users" do
@@ -12,6 +12,7 @@ defmodule Tex.Accounts.User do
     field :confirmed_at, :naive_datetime
     has_one :account, Account
     has_many :posts, Post
+    has_many :likes, Like
 
     timestamps()
   end

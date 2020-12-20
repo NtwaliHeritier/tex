@@ -19,6 +19,7 @@ defmodule TexWeb.Router do
   scope "/", TexWeb do
     pipe_through :browser
     resources "/posts", PostController
+    resources "/likes", LikeController, only: [:create]
     get "/", PostController, :index
   end
 

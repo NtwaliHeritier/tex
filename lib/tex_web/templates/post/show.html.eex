@@ -9,7 +9,15 @@
             </div>
             <div class="post-likes">
                 <span><i class="fa fa-comment"></i> 100 Comments</span>
-                <span><i class="fa fa-heart"></i> 100 likes</span>
+                <span>
+                <%= form_for @conn, Routes.like_path(@conn, :create), [as: :like], fn f->%>
+                    <%= hidden_input f, :post, value: @post.id%>
+                    <%= hidden_input f, :user, value: @current_user.id%>
+                    <%=submit class: "like-btn" do%>
+                    <i class="fa fa-heart"></i>
+                    <% end %>
+                <% end %>                
+                <%=length(@post.likes)%> <%= if length(@post.likes)==1, do: "like", else: "likes" %></span>
             </div>
         </div>
         <h4 class="text-center mt-4 mb-2 font-weight-bold"><%= @post.title%></h4>
