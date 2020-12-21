@@ -1,8 +1,10 @@
 defmodule TexWeb.PostController do
   use TexWeb, :controller
+  import Tex.Friendship.InvitationsHandling
   import Tex.Articles.Featured
   plug :liked_posts
   plug :viewed_posts
+  plug :unconfirmed_invitations 
 
   alias Tex.Articles
   alias Tex.Articles.Post

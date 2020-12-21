@@ -39,6 +39,7 @@ defmodule Tex.Friendship do
   def get_invitation!(id) do
     Invitation 
     |> Repo.get!(id)
+    |> Repo.preload([:invitor, :invitee])
   end
 
   @doc """

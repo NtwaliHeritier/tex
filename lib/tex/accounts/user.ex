@@ -23,9 +23,9 @@ defmodule Tex.Accounts.User do
     has_many :invitors, through: [:received_invitations, :invitor]
 
     has_many :followee_friends, Friend, foreign_key: :followee_id
-    has_many :followees, through: [:followee_friends, :followee]
+    has_many :followers, through: [:followee_friends, :follower]
     has_many :follower_friends, Friend, foreign_key: :follower_id
-    has_many :followers, through: [:follower_friends, :follower]
+    has_many :followees, through: [:follower_friends, :followee]
 
     timestamps()
   end
