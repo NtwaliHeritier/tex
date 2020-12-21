@@ -9,8 +9,9 @@
             </div>
             <div class="post-likes">
                 <span><i class="fa fa-comment"></i> 100 Comments</span>
+                <span><i class="fa fa-eye"></i> <%=length(@post.views)%> <%=if length(@post.views) == 1, do: "View", else: "Views"%></span>
                 <span>
-                <%= form_for @conn, Routes.like_path(@conn, :create), [as: :like], fn f->%>
+                <%= form_for @conn, Routes.like_path(@conn, :create), [as: :like, class: "d-inline"], fn f->%>
                     <%= hidden_input f, :post, value: @post.id%>
                     <%= hidden_input f, :user, value: @current_user.id%>
                     <%=submit class: "like-btn" do%>
