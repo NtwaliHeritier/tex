@@ -42,7 +42,7 @@
                 <div class="read-posts">
                 <%= for post <- @conn.assigns[:viewed_posts] do %>
                   <div class="read-post">
-                    <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img bg-dark" do%>
+                    <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img" do%>
                     <img class="w-100 h-100" src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
                     <% end %>
                     <div class="read-post-content">
@@ -80,7 +80,7 @@
                 <div class="read-posts">
                 <%= for post <- @conn.assigns[:liked_posts] do %>
                   <div class="read-post">
-                    <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img bg-dark" do%>
+                    <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img" do%>
                     <img class="w-100 h-100" src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
                     <% end %>
                     <div class="read-post-content">

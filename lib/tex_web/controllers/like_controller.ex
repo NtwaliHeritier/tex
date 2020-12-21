@@ -7,7 +7,7 @@ defmodule TexWeb.LikeController do
         post_id = String.to_integer(post_id)
         case Articles.create_like(post_id, user_id) do
             {:ok, _} ->
-                post = Articles.get_post!(String.to_integer(post_id))
+                post = Articles.get_post!(post_id)
                 conn
                 |> put_flash(:info, "Like added")
                 |> redirect(to: Routes.post_path(conn, :show, post))
