@@ -1,0 +1,26 @@
+<div class="profile">
+      <div class="profile-img">
+        <img src="<%=Routes.static_path(@conn, Tex.ImageUploader.url({@account.image_path, []}))%>" alt="">
+      </div>
+      <div class="profile-specs">
+        <div class="profile-spec">
+          <span><%= length(@account.user.posts)%> <%= if length(@account.user.posts)==1, do: "POST", else: "POSTS"%></span>
+        </div>
+        <div class="profile-spec">
+          <span>100 FOLLOWING</span>
+        </div>
+        <div class="profile-spec">
+          <span>100 FOLLOWERS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-names mt-2">
+      <div class="fullname">
+        <div class= "font-weight-bold"><%=String.upcase(@account.first_name)%> <%=String.capitalize(@account.last_name)%></div>
+        <div class= "font-weight-bold"><%=@account.username%></div>
+      </div>
+      <div>
+        <button>FOLLOW</button>
+      </div>
+    </div>

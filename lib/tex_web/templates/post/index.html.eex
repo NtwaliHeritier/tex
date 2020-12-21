@@ -29,7 +29,9 @@
                         </div>
                     </div>
                 </div>
+                <%= link to: Routes.account_path(@conn, :show, post.user.account.id) do%>
                 <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" class="topic-author" alt="">
+                <% end %>
               </div>
               <%end%>
             </div>
@@ -40,14 +42,18 @@
                 <div class="read-posts">
                 <%= for post <- @conn.assigns[:viewed_posts] do %>
                   <div class="read-post">
-                    <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
-                    <div class="read-post-content">
-                      <span class="font-weight-bold"><%= String.capitalize(post.user.account.username)%></span>
-                      <p class="m-0"><%= String.slice(post.title, 0, 25)%>...
-                      <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
-                      <%= hidden_input f, :post_id, value: post.id%>
-                      <%= submit "read more", class: "mb-2 like-btn submit-btn text-secondary"%>
+                    <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img bg-dark" do%>
+                    <img class="w-100 h-100" src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
                     <% end %>
+                    <div class="read-post-content">
+                      <span class="font-weight-bold ml-2"><%= String.capitalize(post.user.account.username)%></span>
+                      <p class="m-0">
+                        <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
+                        <%= hidden_input f, :post_id, value: post.id%>
+                        <%= submit class: "mb-2 like-btn submit-btn text-secondary mb-0" do%>
+                          <%= String.slice(post.title, 0, 55)%> ...
+                        <% end %>
+                        <% end %>
                       </p>
                       <div class="content-spec">
                         <div class="content-like">
@@ -74,13 +80,17 @@
                 <div class="read-posts">
                 <%= for post <- @conn.assigns[:liked_posts] do %>
                   <div class="read-post">
-                    <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
+                    <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img bg-dark" do%>
+                    <img class="w-100 h-100" src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
+                    <% end %>
                     <div class="read-post-content">
-                      <span class="font-weight-bold"><%= String.capitalize(post.user.account.username)%></span>
-                      <p class="m-0"><%= String.slice(post.title, 0, 35)%>...
+                      <span class="font-weight-bold ml-2"><%= String.capitalize(post.user.account.username)%></span>
+                      <p class="m-0">
                       <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
                       <%= hidden_input f, :post_id, value: post.id%>
-                      <%= submit "read more", class: "mb-2 like-btn submit-btn text-secondary"%>
+                      <%= submit class: "mb-2 like-btn submit-btn text-secondary mb-0" do%>
+                        <%= String.slice(post.title, 0, 55)%> ...
+                      <% end %>
                       <% end %>
                       </p>
                       <div class="content-spec">
