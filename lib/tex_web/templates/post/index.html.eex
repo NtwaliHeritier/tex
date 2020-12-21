@@ -11,10 +11,12 @@
                     <div class="topic-img">
                         <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>" alt="">
                     </div>
-                    <div class="topic-title bg-white"><p class="font-weight-bold text-center"><%= String.slice(post.title, 0, 50)%>...
+                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">
                     <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
                       <%= hidden_input f, :post_id, value: post.id%>
-                      <%= submit "read more", class: "mb-2 like-btn submit-btn text-secondary"%>
+                      <%= submit class: "mb-2 like-btn submit-btn text-secondary" do%>
+                        <%= String.slice(post.title, 0, 50)%>...
+                      <% end%>
                     <% end %>
                     </p></div>
                     <div class="topic-specs d-flex justify-content-between p-2">
