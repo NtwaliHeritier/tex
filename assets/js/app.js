@@ -4,6 +4,7 @@
 import "../css/app.scss"
 import 'bootstrap'
 import 'font-awesome/css/font-awesome.css';
+import './button-clicks'
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
