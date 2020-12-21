@@ -7,10 +7,10 @@
           <span><%= length(@account.user.posts)%> <%= if length(@account.user.posts)==1, do: "POST", else: "POSTS"%></span>
         </div>
         <div class="profile-spec">
-          <span>100 FOLLOWING</span>
+          <span><%= length(@account.user.followees)%> FOLLOWING</span>
         </div>
         <div class="profile-spec">
-          <span>100 FOLLOWERS</span>
+          <span><%= length(@account.user.followers)%> FOLLOWERS</span>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <%= form_for @conn, Routes.invitation_path(@conn, :create), [as: :invitation], fn f->%>
           <%=hidden_input f, :invitee_id, value: @account.user.id%>
           <%=hidden_input f, :invitor_id, value: @current_user.id%>
-          <%= submit "FOLLOW"%>
+          <%= submit "FOLLOW", class: "p-2"%>
         <%end%>
       </div>
     </div>

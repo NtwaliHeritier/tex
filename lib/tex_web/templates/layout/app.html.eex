@@ -23,12 +23,12 @@
             <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#saveModal">Add a post</a></li>
             <li><%=link "Home", to: Routes.post_path(@conn, :index), class: "a"%></li>
             <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "a"%></li>
-            <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#exampleModal">Notifications(<%= length(Tex.Accounts.UserHandling.get_user_account_info(@current_user).received_invitations)%>)</a></li>
+            <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#exampleModal">Notifications(<%= length(Tex.Accounts.UserHandling.get_user_account_info(@current_user).invitors)%>)</a></li>
         </ul>
     </div>
     <% end %>
     <%= render "save.html", assigns%>
-    <%= render "notification.html"%>
+    <%= render "notification.html", assigns%>
     <main role="main">
       <%= if get_flash(@conn, :info) do %>
       <p class="alert alert-info mt-5" role="alert"><%= get_flash(@conn, :info) %></p>

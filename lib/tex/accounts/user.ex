@@ -4,6 +4,7 @@ defmodule Tex.Accounts.User do
   alias Tex.Accounts.Account
   alias Tex.Articles.{Post, Like, View}
   alias Tex.Friendship.Invitation
+  alias Tex.Friendship.Friend
 
   @derive {Inspect, except: [:password]}
   schema "users" do
@@ -15,8 +16,16 @@ defmodule Tex.Accounts.User do
     has_many :posts, Post
     has_many :likes, Like
     has_many :views, View
+
     has_many :sent_invitations, Invitation, foreign_key: :invitor_id
+    has_many :invitees, through: [:sent_invitations, :invitee]
     has_many :received_invitations, Invitation, foreign_key: :invitee_id
+    has_many :invitors, through: [:received_invitations, :invitor]
+
+    has_many :followee_friends, Friend, foreign_key: :followee_id
+    has_many :followees, through: [:followee_friends, :followee]
+    has_many :follower_friends, Friend, foreign_key: :follower_id
+    has_many :followers, through: [:follower_friends, :follower]
 
     timestamps()
   end

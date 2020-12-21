@@ -61,7 +61,7 @@ defmodule Tex.Accounts do
     User
     |> Repo.get!(id)
     |> Repo.preload(:account)
-    |> Repo.preload(:received_invitations)
+    |> Repo.preload([invitors: :account])
   end 
 
   ## User registration
@@ -383,7 +383,7 @@ defmodule Tex.Accounts do
   def get_account!(id) do 
     Account
     |> Repo.get!(id)
-    |> Repo.preload(user: :posts)
+    |> Repo.preload(user: [:posts, :followees, :followers])
   end 
 
   @doc """
