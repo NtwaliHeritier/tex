@@ -23,7 +23,7 @@
             <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#saveModal">Add a post</a></li>
             <li><%=link "Home", to: Routes.post_path(@conn, :index), class: "a"%></li>
             <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "a"%></li>
-            <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#exampleModal">Notifications</a></li>
+            <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#exampleModal">Notifications(<%= length(Tex.Accounts.UserHandling.get_user_account_info(@current_user).received_invitations)%>)</a></li>
         </ul>
     </div>
     <% end %>

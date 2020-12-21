@@ -21,6 +21,10 @@
         <div class= "font-weight-bold"><%=String.capitalize(@account.username)%></div>
       </div>
       <div>
-        <button>FOLLOW</button>
+        <%= form_for @conn, Routes.invitation_path(@conn, :create), [as: :invitation], fn f->%>
+          <%=hidden_input f, :invitee_id, value: @account.user.id%>
+          <%=hidden_input f, :invitor_id, value: @current_user.id%>
+          <%= submit "FOLLOW"%>
+        <%end%>
       </div>
     </div>

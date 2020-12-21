@@ -1,4 +1,6 @@
-const notification = document.querySelector(".notification-btn")
-notification.addEventListener('click', () => {
-    document.getElementById("check").checked = false
+const notification = document.querySelectorAll(".notification-btn")
+notification.forEach((notify) => {
+    notify.addEventListener('click', () => {
+        document.getElementById("check").checked = false
+    })
 })

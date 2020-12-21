@@ -61,6 +61,7 @@ defmodule Tex.Accounts do
     User
     |> Repo.get!(id)
     |> Repo.preload(:account)
+    |> Repo.preload(:received_invitations)
   end 
 
   ## User registration

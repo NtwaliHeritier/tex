@@ -22,6 +22,7 @@ defmodule TexWeb.Router do
     resources "/likes", LikeController, only: [:create]
     resources "/views", ViewController, only: [:create]
     resources "/accounts", AccountController, only: [:show, :index]
+    resources "/invitations", InvitationController, only: [:create, :index]
     get "/", PostController, :index
   end
 

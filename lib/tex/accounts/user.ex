@@ -3,6 +3,7 @@ defmodule Tex.Accounts.User do
   import Ecto.Changeset
   alias Tex.Accounts.Account
   alias Tex.Articles.{Post, Like, View}
+  alias Tex.Friendship.Invitation
 
   @derive {Inspect, except: [:password]}
   schema "users" do
@@ -14,6 +15,8 @@ defmodule Tex.Accounts.User do
     has_many :posts, Post
     has_many :likes, Like
     has_many :views, View
+    has_many :sent_invitations, Invitation, foreign_key: :invitor_id
+    has_many :received_invitations, Invitation, foreign_key: :invitee_id
 
     timestamps()
   end
