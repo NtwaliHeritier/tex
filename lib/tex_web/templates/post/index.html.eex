@@ -1,7 +1,43 @@
 <main class="main">
           <section class="post-topics">
-            <%=if length(Tex.Accounts.UserHandling.get_user_account_info(@current_user).followees) == 0 || length(@posts) == 0 do%>
-            <h1 class="w-50 text-right">No posts to show</h1>
+            <%=if length(Tex.Accounts.UserHandling.get_user_account_info(@current_user).followees) == 0 do%>
+              <%= if length(@posts) == 0 do%>
+                <h1 class="w-50 text-right">No posts to show</h1>
+              <% else %>
+                <div class="topics">
+            <%= for post <- Tex.Accounts.UserHandling.get_user_account_info(@current_user).posts do %>
+              <div class="columns">
+                <div class="d-flex topic flex-column">
+                    <div class="topic-img">
+                        <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>" alt="">
+                    </div>
+                    <div class="topic-title bg-white"><p class="font-weight-bold text-center">
+                    <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
+                      <%= hidden_input f, :post_id, value: post.id%>
+                      <%= submit class: "mb-2 like-btn submit-btn text-secondary" do%>
+                        <%= String.slice(post.title, 0, 50)%>...
+                      <% end%>
+                    <% end %>
+                    </p></div>
+                    <div class="topic-specs d-flex justify-content-between p-2">
+                        <div class="topic-like">
+                          <i class="fa fa-heart"></i><span> <%= length(post.likes)%></span>
+                        </div>
+                        <div class="topic-comment">
+                          <i class="fa fa-comment"></i><span> <%= length(post.comments)%></span>
+                        </div>
+                        <div class="topic-view">
+                          <i class="fa fa-eye"></i><span> <%= length(post.views)%></span>
+                        </div>
+                    </div>
+                </div>
+                <%= link to: Routes.account_path(@conn, :show, post.user.account.id) do%>
+                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" class="topic-author" alt="">
+                <% end %>
+              </div>
+              <%end%>
+            </div>
+              <% end %>
             <% else %>
             <div class="topics">
             <%= for post <- @posts do %>

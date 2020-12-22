@@ -1,12 +1,16 @@
 defmodule Tex.Accounts.UserHandling do
     alias Tex.Accounts
+    alias Tex.Accounts.User
     alias Tex.Articles.Like
     alias Tex.Friendship.Friend
     alias Tex.Repo
     import Ecto.Query
 
     def get_user_account_info(user) do
-        Accounts.get_user!(user.id)
+        User
+        |> Repo.get!(user.id)
+        |> Repo.preload([:account, :followees])
+        |> Repo.preload(posts: [:likes, :comments, :views, user: :account])
     end
 
     def get_count(invitations, user_id, a) when invitations == [], do: a
