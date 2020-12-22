@@ -4,7 +4,7 @@ defmodule TexWeb.PostController do
   import Tex.Articles.Featured
   plug :liked_posts
   plug :viewed_posts
-  plug :unconfirmed_invitations 
+  plug :unconfirmed_invitations
 
   alias Tex.Articles
   alias Tex.Articles.Post

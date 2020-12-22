@@ -1,5 +1,6 @@
 defmodule Tex.Friendship.InvitationsHandling do
     alias Tex.Friendship.Invitation
+    alias Tex.Articles.Like
     alias Tex.Repo
     import Ecto.Query
     import Plug.Conn
