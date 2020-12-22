@@ -1,9 +1,8 @@
 <main class="main">
           <section class="post-topics">
-            <%=if length(@posts) == 0 do%>
-            <h1>No posts to show</h1>
-            <%end%>
-            <%= if length(@posts) != 0 do%>
+            <%=if length(Tex.Accounts.UserHandling.get_user_account_info(@current_user).followees) == 0 || length(@posts) == 0 do%>
+            <h1 class="w-50 text-right">No posts to show</h1>
+            <% else %>
             <div class="topics">
             <%= for post <- @posts do %>
               <div class="columns">

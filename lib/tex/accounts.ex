@@ -62,6 +62,8 @@ defmodule Tex.Accounts do
     |> Repo.get!(id)
     |> Repo.preload(:account)
     |> Repo.preload([invitors: :account])
+    |> Repo.preload(:followees)
+    |> Repo.preload(:followers)
   end 
 
   ## User registration
