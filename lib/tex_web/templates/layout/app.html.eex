@@ -4,30 +4,40 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Tex · Phoenix Framework</title>
+    <title>Tex</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <%= if @current_user do %>
+    <input type="checkbox" id="check">
+    <label for="check" id="btn"><i class="fa fa-bars text-white"></i></label>
+    <label for="check" id="cancel"><i class="fa fa-times text-white"></i></label>
+    <h1 class="text-center mt-3 font-weight-bold"><%=link "тєχ", to: Routes.post_path(@conn, :index), class: "text-dark"%></h1>
+    <div class="sidebar">
+        <div class="side-container">
+          <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.UserHandling.get_user_account_info(@current_user).account.image_path, []}))%>">
+          <h5 class="text-white mt-3"><%=link String.capitalize(Tex.Accounts.UserHandling.get_user_account_info(@current_user).account.username), to: Routes.account_path(@conn, :show, @current_user)%></h5>
+        </div>
+        <ul>
+            <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#saveModal">Add a post</a></li>
+            <li><%=link "Home", to: Routes.post_path(@conn, :index), class: "a"%></li>
+            <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#exampleModal">Notifications(<%= if @conn.assigns[:unconfirmed_invitations], do: Tex.Accounts.UserHandling.get_count(@conn.assigns[:unconfirmed_invitations], @current_user.id, 0), else: "0"%>)</a></li>
+            <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "a"%></li>
+        </ul>
+    </div>
+    <%= render "save.html", assigns%>
+    <%= render "notification.html", assigns%>
+    <% end %>
+    <main role="main">
+      <%= if get_flash(@conn, :info) do %>
+      <p class="alert alert-info mt-5" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+      <p class="alert alert-danger mt-5" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
       <%= @inner_content %>
     </main>
+    <div class="mt-5"></div>
   </body>
 </html>

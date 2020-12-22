@@ -1,0 +1,41 @@
+.profile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 5%;
+}
+
+.profile-img {
+    img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+}
+
+.profile-spec {
+    span {
+        font-weight: 800;
+    }
+}
+
+.profile-specs {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.profile-names {
+    display: flex;
+    justify-content: space-around;
+}
+
+.followed-btn {
+    background-color: #5e52ad;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+}

@@ -1,0 +1,37 @@
+<div class="post-image mt-5">
+        <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({@post.image, []}))%>" alt="">
+    </div>
+    <div class="post-specs">
+        <div class="post-heading mt-5">
+            <div class="author-info">
+                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.image_path, []}))%>" alt="">
+                <span><%= link String.capitalize(Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.username), to: Routes.account_path(@conn, :show, @post.user), class: "text-dark" %></span>
+            </div>
+            <div class="post-likes">
+                <span><a class="a notification-btn" type="button" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment text-dark"></i></a>
+
+                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#commentViewModal"><%= length(@post.comments)%> <%= if length(@post.comments) == 1, do: "Comment", else: "Comments"%></a>
+                </span>
+                 <%= render "comment-add.html", assigns%>
+                <span>
+                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#viewModal"><i class="fa fa-eye"></i> <%=length(@post.views)%> <%=if length(@post.views) == 1, do: "View", else: "Views"%></a>
+                    </span>
+                <span>
+                <%= if length(Tex.Accounts.UserHandling.get_post(@conn.assigns[:current_user], @post)) > 0 do%>
+                      <i class="fa fa-heart" style="color: red"></i>              
+                <% else %>
+                    <%= form_for @conn, Routes.like_path(@conn, :create), [as: :like, class: "d-inline"], fn f->%>
+                        <%= hidden_input f, :post, value: @post.id%>
+                        <%= hidden_input f, :user, value: @current_user.id%>
+                        <%=submit class: "like-btn" do%>
+                        <i class="fa fa-heart"></i>
+                        <% end %>
+                    <% end %>  
+                <% end %>
+                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#likeModal"><%=length(@post.likes)%> <%= if length(@post.likes)==1, do: "like", else: "likes" %></a>               
+                </span>
+            </div>
+        </div>
+        <h4 class="text-center mt-4 mb-2 font-weight-bold"><%= @post.title%></h4>
+        <p class="mt-3"><%= @post.content %>/p>
+    </div>

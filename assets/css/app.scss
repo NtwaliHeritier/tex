@@ -1,36 +1,125 @@
 /* This file is for your main application css. */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,300,400");
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.css';
 @import "./phoenix.css";
+@import "./signup.scss";
+@import "./posts.scss";
+@import "./login.scss";
+@import "./post_view.scss";
+@import "./profile.scss";
 
-/* Alerts and form errors */
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+$color: #5e52ad;
+$height: 15vh;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
-.alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+
+body {
+    background-color: #edf3f3 !important; 
 }
-.alert-warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #faebcc;
+
+@mixin animation {
+    transition: all .5s ease;
 }
-.alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
+
+/*side nav*/
+
+#check {
+    display: none;
 }
-.alert p {
-  margin-bottom: 0;
+
+#cancel {
+    position: fixed;
+    left: -10%;
+    top: 5%;
+    font-size: 40px;
+    z-index: 1111;
+    cursor: pointer;
 }
-.alert:empty {
-  display: none;
+
+#btn {
+    position: fixed;
+    background-color: $color;
+    box-shadow: 1px 4px 20px 3px #edf3f3;
+    padding: 0 1%;
+    left: 3%;
+    top: 1%;
+    z-index: 1111;
+    font-size: 35px;
+    cursor: pointer;
+    @include animation();
 }
-.invalid-feedback {
-  color: #a94442;
-  display: block;
-  margin: -1rem 0 2rem;
+
+#check:checked ~.sidebar {
+    left: 0%;
+}
+
+#check:checked ~#cancel {
+    left: 10%;
+    @include animation();
+}
+
+#check:checked ~#btn {
+    left: 20%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: $color;
+    width: 40%;
+    top: 0%;
+    height: 100%;
+    left: -40%;
+    z-index: 1110;
+    @include animation();
+
+    ul {
+        margin-top: 8%;
+    }
+
+    li {
+        margin-top: 20px;
+    }
+
+    .a {
+        color: white;
+        font-size: 20px;
+        display: block;
+        text-align: center;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.side-container {
+    height: 20%;
+    margin-top: 20%;
+    text-align: center;
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+}
+
+@media screen and (max-width: 539px) {
+.sidebar {
+    width: 100%;
+    left: -100%;
+}
+}
+
+@media screen and (max-width: 992px) {
+.sidebar {
+    width: 75%;
+    left: -75%;
+}
 }

@@ -1,0 +1,57 @@
+<div class="sign-up-container">
+  <nav class="nav d-flex justify-content-between">
+        <h1 class="ml-3 font-weight-bold">тєχ</h1>
+        <div class="moon" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M253.10,-6.41 C227.70,33.05 290.34,142.59 465.85,145.55 L504.22,145.55 L500.00,0.00 Z" style="stroke: none; fill: #5e52ad;"></path></svg>
+        </div>
+    </nav>
+                <main class="content">
+                    <div class="form-container">
+                        <%= form_for @changeset, Routes.user_registration_path(@conn, :create), [multipart: true], fn f -> %>
+                            <%= if @changeset.action do %>
+                                <div class="alert alert-danger">
+                                <p>Oops, something went wrong! Please check the errors below.</p>
+                                </div>
+                            <% end %>                            
+                            <%= inputs_for f, :account, fn cf -> %>
+                            <div class="input-flex">
+                                <%=text_input cf, :first_name, placeholder: "First name", class: "py-2 my-2 input"%>
+                                <%=text_input cf, :last_name, placeholder: "Last name", class: "py-2 my-2 input"%>
+                            </div>
+                            <div class="inputs">
+                                <%=select cf, :gender, ["Male": "male", "Female": "female"], class: "p-2 my-2 select"%>
+                            </div>
+                            <div class="inputs">
+                                <%=text_input cf, :phone, placeholder: "Phone", class: "py-2 my-2 input"%>
+                                <span class="d-block">Hint: "phone start with +250"</span>
+                            </div>
+                            <div class="input-flex">
+                                <%=text_input cf, :country, placeholder: "Country", class: "py-2 my-2 input"%>
+                                <%=text_input cf, :city, placeholder: "City", class: "py-2 my-2 input"%>
+                            </div>
+                            <div class="inputs">
+                                <%=text_input cf, :username, placeholder: "Username", class: "py-2 my-2 input"%>
+                            </div>
+                            <%end%>
+                            <div class="inputs">
+                                <%=text_input f, :email, placeholder: "Email", class: "py-2 my-2 input"%>
+                            </div>
+                            <div class="inputs">
+                                <%=password_input f, :password, placeholder: "Password", class: "py-2 my-2 input"%>
+                            </div>
+                            <%= inputs_for f, :account, fn cf -> %>
+                            <div class="inputs">
+                                <%=file_input cf, :image_path, class: "py-2 my-2 input"%>
+                            </div>
+                            <%end%>
+                            <%= submit "Register", class: "py-2 my-4 text-white font-weight-bold button border-0 button" %>
+                        <%end%>
+                        <div class="anchors">
+                            <p>Already have an account? <%=link "LOGIN", to: Routes.user_session_path(@conn, :new), class: "font-weight-bold"%></p>
+                        </div>
+                    </div>
+                </main>
+                <footer>
+                    <p class="text-right px-5 font-weight-bold pb-3">&copy;2020 Tex</p>
+                </footer>
+
+</div>

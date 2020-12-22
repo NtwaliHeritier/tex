@@ -1,20 +1,53 @@
-# Tex
+# Project :  TEX
+In this project I built a social media web application using Elixir's framework Phoenix.
 
-To start your Phoenix server:
+## Built-With
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+- Elixir -v 1.10.4
+- Phoenix -v 1.5.4
+- Postgresql
+- VScode
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## External libraries used
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+- Arc
+- Phx_gen_auth
 
-## Learn more
+## Getting Started
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+### Prerequisites
+
+To get this project up and running locally, you must already have elixir and phoenix installed on your computer
+
+**To get this project set up on your local machine, follow these simple steps:**
+
+1. Open Terminal.
+2. Navigate to your desired location to download the contents of this repository.
+3. Copy and paste the following code into the Terminal: git clone https://github.com/NtwaliHeritier/tex.git
+4. Run ```cd tex```.
+5. Run ```mix deps.get``` to get the necesary libraries.
+6. Change the db password in /config/dev.exs to your postgres password
+7. Run `mix ecto.create`.
+8. Run `mix ecto.create`
+9. Run `mix phx.server`
+
+## Live Demo
+
+[Live Demo Link](https://shrouded-basin-98979.herokuapp.com/)
+
+## Author Details::
+
+👤 **NTWALI Heritier**
+- Github: [@NtwaliHeritier](https://github.com/NtwaliHeritier)
+- Linkedin: [@NtwaliHeritier](https://www.linkedin.com/in/ntwaliheritier/)
+- E-mail: (mailto:ntwalihatsor78.nh@gmail.com) 
+- Twitter: [@NtwaliHeritier](https://twitter.com/NtwaliHeritier)
+
+
+## Show your support
+
+Give ⭐ Star me on GitHub — it helps!
+
+## 📝 License
+
+This project is [MIT](lic.url) licensed.   

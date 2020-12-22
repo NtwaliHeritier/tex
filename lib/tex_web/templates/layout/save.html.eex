@@ -1,0 +1,26 @@
+<!-- Modal -->
+<div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="add-post">
+          <%= form_for @conn, Routes.post_path(@conn, :create), [as: :post, multipart: true], fn f-> %>
+                <%= text_input f, :title, placeholder: "Title", class: "py-2 my-2 input" %>
+                <%= error_tag f, :title %>
+                <%= textarea f, :content, rows: "5", placeholder: "Content", class: "w-100 rounded input" %>
+                <%= error_tag f, :content %>
+                <%= file_input f, :image, class: "py-2 my-2 input" %>
+                <%= error_tag f, :image%>
+                <%= submit "POST", class: "py-2 my-4 text-white font-weight-bold button border-0" %>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
