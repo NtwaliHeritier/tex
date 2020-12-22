@@ -64,7 +64,7 @@ defmodule Tex.Accounts do
     |> Repo.preload([invitors: :account])
     |> Repo.preload(:followees)
     |> Repo.preload(:followers)
-  end 
+  end
 
   ## User registration
 
@@ -382,11 +382,11 @@ defmodule Tex.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_account!(id) do 
+  def get_account!(id) do
     Account
     |> Repo.get!(id)
-    |> Repo.preload(user: [:followees, :followers, posts: [:likes, :comments, :views]])
-  end 
+    |> Repo.preload(user: [followees: :account, followers: :account, posts: [:likes, :comments, :views]])
+  end
 
   @doc """
   Creates a account.

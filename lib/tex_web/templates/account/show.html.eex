@@ -7,13 +7,17 @@
           <span><%= length(@account.user.posts)%> <%= if length(@account.user.posts)==1, do: "POST", else: "POSTS"%></span>
         </div>
         <div class="profile-spec">
-          <span><%= length(@account.user.followees)%> FOLLOWING</span>
+          <span>
+          <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#followeeModal"><%= length(@account.user.followees)%> FOLLOWING</a></span>
         </div>
         <div class="profile-spec">
-          <span><%= length(@account.user.followers)%> FOLLOWERS</span>
+          <span>
+          <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#followerModal"><%= length(@account.user.followers)%> FOLLOWERS</a></span>
         </div>
       </div>
     </div>
+
+    <%= render "follow.html", assigns%>
 
     <div class="profile-names mt-2">
       <div class="fullname">

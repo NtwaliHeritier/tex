@@ -1,0 +1,45 @@
+<div class="modal fade" id="followeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Likes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column">
+          <%= for followee <- @account.user.followees do %>
+            <div>
+              <h5><%= String.capitalize(followee.account.username)%></h5>
+            </div>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="followerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Likes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column">
+          <%= for follower <- @account.user.followers do %>
+            <div>
+              <h5><%= String.capitalize(follower.account.username)%></h5>
+            </div>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

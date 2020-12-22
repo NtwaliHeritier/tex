@@ -18,7 +18,7 @@
                     </span>
                 <span>
                 <%= if length(Tex.Accounts.UserHandling.get_post(@conn.assigns[:current_user], @post)) > 0 do%>
-                      <i class="fa fa-heart" style="color: red"></i>              
+                      <i class="fa fa-heart" style="color: red"></i>
                 <% else %>
                     <%= form_for @conn, Routes.like_path(@conn, :create), [as: :like, class: "d-inline"], fn f->%>
                         <%= hidden_input f, :post, value: @post.id%>
@@ -26,9 +26,9 @@
                         <%=submit class: "like-btn" do%>
                         <i class="fa fa-heart"></i>
                         <% end %>
-                    <% end %>  
+                    <% end %>
                 <% end %>
-                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#likeModal"><%=length(@post.likes)%> <%= if length(@post.likes)==1, do: "like", else: "likes" %></a>               
+                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#likeModal"><%=length(@post.likes)%> <%= if length(@post.likes)==1, do: "like", else: "likes" %></a>
                 </span>
             </div>
         </div>
