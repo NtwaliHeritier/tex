@@ -44,8 +44,8 @@ defmodule Tex.Articles do
     Post
     |> Repo.get!(id)
     |> Repo.preload(user: :account)
-    |> Repo.preload(:likes)
-    |> Repo.preload(:views)
+    |> Repo.preload(likes: [user: :account])
+    |> Repo.preload(views: [user: :account])
     |> Repo.preload(comments: [user: :account])
   end
   @doc """

@@ -15,4 +15,8 @@ defmodule Tex.Articles.Featured do
         posts = Repo.all(query) |> Repo.preload(:likes) |> Repo.preload(user: :account) |> Repo.preload(:views) |> Repo.preload(:comments)
         assign(conn, :viewed_posts, posts)
     end
+
+    def get_views_count(post) do
+        
+    end
 end

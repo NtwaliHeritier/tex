@@ -13,7 +13,9 @@
                 <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#commentViewModal"><%= length(@post.comments)%> <%= if length(@post.comments) == 1, do: "Comment", else: "Comments"%></a>
                 </span>
                  <%= render "comment-add.html", assigns%>
-                <span><i class="fa fa-eye"></i> <%=length(@post.views)%> <%=if length(@post.views) == 1, do: "View", else: "Views"%></span>
+                <span>
+                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#viewModal"><i class="fa fa-eye"></i> <%=length(@post.views)%> <%=if length(@post.views) == 1, do: "View", else: "Views"%></a>
+                    </span>
                 <span>
                 <%= if length(Tex.Accounts.UserHandling.get_post(@conn.assigns[:current_user], @post)) > 0 do%>
                       <i class="fa fa-heart" style="color: red"></i>              
@@ -25,8 +27,9 @@
                         <i class="fa fa-heart"></i>
                         <% end %>
                     <% end %>  
-                <% end %>                
-                <%=length(@post.likes)%> <%= if length(@post.likes)==1, do: "like", else: "likes" %></span>
+                <% end %>
+                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#likeModal"><%=length(@post.likes)%> <%= if length(@post.likes)==1, do: "like", else: "likes" %></a>               
+                </span>
             </div>
         </div>
         <h4 class="text-center mt-4 mb-2 font-weight-bold"><%= @post.title%></h4>
