@@ -1,5 +1,4 @@
 defmodule Tex.Accounts.UserHandling do
-    alias Tex.Accounts
     alias Tex.Accounts.User
     alias Tex.Articles.Like
     alias Tex.Friendship.Friend
@@ -13,12 +12,12 @@ defmodule Tex.Accounts.UserHandling do
         |> Repo.preload(posts: [:likes, :comments, :views, user: :account])
     end
 
-    def get_count(invitations, user_id, a) when invitations == [], do: a
+    def get_count(invitations, _user_id, a) when invitations == [], do: a
 
     def get_count(invitations, user_id, a) do
        [ head | tail ] = invitations
        if (head.invitee_id == user_id ) do
-            get_count(tail, user_id, a = a + 1)
+            get_count(tail, user_id, a + 1)
        else
             get_count(tail, user_id, a)
         end
