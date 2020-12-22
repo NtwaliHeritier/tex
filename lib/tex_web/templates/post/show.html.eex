@@ -12,7 +12,7 @@
                 <span><i class="fa fa-eye"></i> <%=length(@post.views)%> <%=if length(@post.views) == 1, do: "View", else: "Views"%></span>
                 <span>
                 <%= if length(Tex.Accounts.UserHandling.get_post(@conn.assigns[:current_user], @post)) > 0 do%>
-                      <i class="fa fa-heart"></i>              
+                      <i class="fa fa-heart" style="color: red"></i>              
                 <% else %>
                     <%= form_for @conn, Routes.like_path(@conn, :create), [as: :like, class: "d-inline"], fn f->%>
                         <%= hidden_input f, :post, value: @post.id%>

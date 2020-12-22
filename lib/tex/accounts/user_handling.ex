@@ -1,8 +1,10 @@
 defmodule Tex.Accounts.UserHandling do
     alias Tex.Accounts
     alias Tex.Articles.Like
+    alias Tex.Friendship.Friend
     alias Tex.Repo
     import Ecto.Query
+
     def get_user_account_info(user) do
         Accounts.get_user!(user.id)
     end
@@ -20,6 +22,11 @@ defmodule Tex.Accounts.UserHandling do
 
     def get_post(user, post) do
         query = from(l in Like, where: l.user_id == ^user.id and l.post_id == ^post.id)
+        Repo.all(query)
+    end
+
+    def get_follow_info(follower, followee) do
+        query = from(f in Friend, where: f.follower_id == ^follower.id and f.followee_id == ^followee.id)
         Repo.all(query)
     end
 end

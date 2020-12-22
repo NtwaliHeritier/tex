@@ -21,10 +21,16 @@
         <div class= "font-weight-bold"><%=String.capitalize(@account.username)%></div>
       </div>
       <div>
-        <%= form_for @conn, Routes.invitation_path(@conn, :create), [as: :invitation], fn f->%>
-          <%=hidden_input f, :invitee_id, value: @account.user.id%>
-          <%=hidden_input f, :invitor_id, value: @current_user.id%>
-          <%= submit "FOLLOW", class: "p-2"%>
-        <%end%>
+        <%= if @conn.assigns[:current_user].id != @account.user.id do%>
+          <%= if length(Tex.Accounts.UserHandling.get_follow_info(@conn.assigns[:current_user], @account.user)) > 0 do%>
+            <h5 class="followed-btn">Already following</h5>
+          <% else %>
+            <%= form_for @conn, Routes.invitation_path(@conn, :create), [as: :invitation], fn f->%>
+            <%=hidden_input f, :invitee_id, value: @account.user.id%>
+            <%=hidden_input f, :invitor_id, value: @current_user.id%>
+            <%= submit "FOLLOW", class: "p-2"%>
+            <%end%>
+        <% end %>
+        <% end %>
       </div>
     </div>
