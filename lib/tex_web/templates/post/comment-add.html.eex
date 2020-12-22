@@ -58,10 +58,11 @@
       </div>
       <div class="modal-body">
         <div class="d-flex flex-column">
-          <%= for view <- Enum.uniq(@post.views) do %>
+          <%= for {username, count} <- Tex.Articles.Featured.get_count(@post.views) do %>
             <div>
-              <h5><%= view.user.account.username%></h5>
+              <h5><%= String.capitalize(username)%> (<%= count%>)</h5>
             </div>
+            <hr>
           <% end %>
         </div>
       </div>

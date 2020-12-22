@@ -16,7 +16,19 @@ defmodule Tex.Articles.Featured do
         assign(conn, :viewed_posts, posts)
     end
 
-    def get_views_count(post) do
-        
+    def get_count(views) do
+        usernames = Enum.map(views, fn(view) -> view.user.account.username end)
+        IO.inspect get_views_count(usernames, %{})
+    end
+
+    def get_views_count([], map), do: map
+
+    def get_views_count(usernames, map) do
+        map = Map.put(map, hd(usernames), if map[hd(usernames)] == nil do
+            1
+        else    
+            map[hd(usernames)] + 1
+        end)
+        get_views_count(tl(usernames), map)
     end
 end
