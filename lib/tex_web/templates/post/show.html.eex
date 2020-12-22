@@ -5,7 +5,7 @@
         <div class="post-heading mt-5">
             <div class="author-info">
                 <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.image_path, []}))%>" alt="">
-                <span><%=String.capitalize(Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.username)%></span>
+                <span><%= link String.capitalize(Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.username), to: Routes.account_path(@conn, :show, @post.user), class: "text-dark" %></span>
             </div>
             <div class="post-likes">
                 <span><a class="a notification-btn" type="button" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment text-dark"></i></a>
