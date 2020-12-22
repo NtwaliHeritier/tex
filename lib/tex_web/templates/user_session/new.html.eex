@@ -27,16 +27,16 @@
             </div>
         </div>
         <div class="story text-center">
-            <p>Hello <span><img src="./images/page/waving-hand.png" alt=""></span></p>
-            <p>Are you a foodie?</p> 
-            <p>Do you enjoy going out with friends?</p> 
-            <p>Do you want to know new restaurants that have opened in your region?</p>
+            <p>Hello <span><img src="/images/page/waving-hand.png" alt=""></span></p>
+            <p>Are you a techie?</p> 
+            <p>Do you enjoy coding and blogging about it?</p> 
+            <p>Do you want to know the newest hot technology?</p>
             <p>The answer is one click away.</p> 
             <p>See you on the other side <img src="<%=Routes.static_path(@conn, "/images/page/smiley.png")%>"></p>
         </div>
     </main>
 
     <footer class="mt-3">
-        <span class="d-block text-right px-5 font-weight-bold">&copy;2020 Appetit co</span>
+        <span class="d-block text-right px-5 font-weight-bold">&copy;2020 Tex</span>
     </footer>
     </div>

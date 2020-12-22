@@ -9,16 +9,21 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column">
         <%= if @conn.assigns[:unconfirmed_invitations] do%>
           <%=for invitation <- @conn.assigns[:unconfirmed_invitations] do%>
-          <h5><%=String.capitalize(invitation.invitor.account.username) %></h5>
-          <%= form_for @conn, Routes.friendship_path(@conn, :create), [as: :friendship], fn f-> %>
-            <%= hidden_input f, :followee_id, value: @current_user.id%>
-            <%= hidden_input f, :follower_id, value: invitation.invitor.id%>
-            <%= hidden_input f, :invitation_id, value: invitation.id%>
-            <%=submit "Accept", class: "p-2"%>
-          <% end %>
+            <%= if invitation.invitee_id == @current_user.id do %>
+              <div class="d-flex justify-content-between">
+              <h5><%=String.capitalize(invitation.invitor.account.username) %></h5>
+              <%= form_for @conn, Routes.friendship_path(@conn, :create), [as: :friendship], fn f-> %>
+                <%= hidden_input f, :followee_id, value: @current_user.id%>
+                <%= hidden_input f, :follower_id, value: invitation.invitor.id%>
+                <%= hidden_input f, :invitation_id, value: invitation.id%>
+                <%=submit "Accept", class: "p-2"%>
+                <% end %>
+              </div>
+              <hr>
+            <% end %>
           <% end %>
           <% else %>
             <h5>No notifications</h5>

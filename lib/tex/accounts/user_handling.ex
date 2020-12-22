@@ -8,7 +8,7 @@ defmodule Tex.Accounts.UserHandling do
 
     def get_count(invitations, user_id, a) do
        [ head | tail ] = invitations
-       if (head.invitee.id == user_id ) do
+       if (head.invitee_id == user_id ) do
             get_count(tail, user_id, a = a + 1)
        else
             get_count(tail, user_id, a)
