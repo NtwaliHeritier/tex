@@ -385,8 +385,7 @@ defmodule Tex.Accounts do
   def get_account!(id) do 
     Account
     |> Repo.get!(id)
-    |> Repo.preload(user: [:followees, :followers])
-    |> Repo.preload(user: [posts: [:likes, :comments, :views]])
+    |> Repo.preload(user: [:followees, :followers, posts: [:likes, :comments, :views]])
   end 
 
   @doc """

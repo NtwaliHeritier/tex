@@ -9,7 +9,9 @@
             </div>
             <div class="post-likes">
                 <span><a class="a notification-btn" type="button" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment text-dark"></i></a>
-                 <%= length(@post.comments)%> <%= if length(@post.comments) == 1, do: "Comment", else: "Comments"%></span>
+
+                <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#commentViewModal"><%= length(@post.comments)%> <%= if length(@post.comments) == 1, do: "Comment", else: "Comments"%></a>
+                </span>
                  <%= render "comment-add.html", assigns%>
                 <span><i class="fa fa-eye"></i> <%=length(@post.views)%> <%=if length(@post.views) == 1, do: "View", else: "Views"%></span>
                 <span>

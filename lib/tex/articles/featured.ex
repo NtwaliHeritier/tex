@@ -6,13 +6,13 @@ defmodule Tex.Articles.Featured do
 
     def liked_posts(conn, _) do
         query = from(p in Post, join: l in Like, on: p.id==l.post_id, limit: 2, group_by: p.id, order_by: [desc: count(l.id)])
-        posts = Repo.all(query) |> Repo.preload(:likes) |> Repo.preload(user: :account) |> Repo.preload(:views)
+        posts = Repo.all(query) |> Repo.preload(:likes) |> Repo.preload(user: :account) |> Repo.preload(:views) |> Repo.preload(:comments)
         assign(conn, :liked_posts, posts)
     end
 
     def viewed_posts(conn, _) do
         query = from(p in Post, join: v in View, on: p.id==v.post_id, limit: 2, group_by: p.id, order_by: [desc: count(v.id)])
-        posts = Repo.all(query) |> Repo.preload(:likes) |> Repo.preload(user: :account) |> Repo.preload(:views)
+        posts = Repo.all(query) |> Repo.preload(:likes) |> Repo.preload(user: :account) |> Repo.preload(:views) |> Repo.preload(:comments)
         assign(conn, :viewed_posts, posts)
     end
 end

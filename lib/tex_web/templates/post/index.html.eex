@@ -23,7 +23,7 @@
                           <i class="fa fa-heart"></i><span> <%= length(post.likes)%></span>
                         </div>
                         <div class="topic-comment">
-                          <i class="fa fa-comment"></i><span> 100</span>
+                          <i class="fa fa-comment"></i><span> <%= length(post.comments)%></span>
                         </div>
                         <div class="topic-view">
                           <i class="fa fa-eye"></i><span> <%= length(post.views)%></span>
@@ -63,7 +63,7 @@
                         </div>
                         <div class="content-comment">
                           <i class="fa fa-comment"></i>
-                          <span> 100</span>
+                          <span> <%= length(post.comments)%></span>
                         </div>
                         <div class="content-view">
                           <i class="fa fa-eye"></i>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="content-comment">
                           <i class="fa fa-comment"></i>
-                          <span> 100</span>
+                          <span> <%= length(post.comments)%></span>
                         </div>
                         <div class="content-view">
                           <i class="fa fa-eye"></i>

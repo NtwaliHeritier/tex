@@ -23,6 +23,7 @@ defmodule Tex.Articles do
     |> Repo.preload(user: :account)
     |> Repo.preload(:likes)
     |> Repo.preload(:views)
+    |> Repo.preload(:comments)
   end
 
   @doc """
@@ -45,7 +46,7 @@ defmodule Tex.Articles do
     |> Repo.preload(user: :account)
     |> Repo.preload(:likes)
     |> Repo.preload(:views)
-    |> Repo.preload(:comments)
+    |> Repo.preload(comments: [user: :account])
   end
   @doc """
   Creates a post.
