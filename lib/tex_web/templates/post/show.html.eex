@@ -8,7 +8,9 @@
                 <span><%=String.capitalize(Tex.Accounts.UserHandling.get_user_account_info(@post.user).account.username)%></span>
             </div>
             <div class="post-likes">
-                <span><i class="fa fa-comment"></i> 100 Comments</span>
+                <span><a class="a notification-btn" type="button" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment text-dark"></i></a>
+                 <%= length(@post.comments)%> <%= if length(@post.comments) == 1, do: "Comment", else: "Comments"%></span>
+                 <%= render "comment-add.html", assigns%>
                 <span><i class="fa fa-eye"></i> <%=length(@post.views)%> <%=if length(@post.views) == 1, do: "View", else: "Views"%></span>
                 <span>
                 <%= if length(Tex.Accounts.UserHandling.get_post(@conn.assigns[:current_user], @post)) > 0 do%>

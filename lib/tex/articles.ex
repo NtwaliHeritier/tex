@@ -45,6 +45,7 @@ defmodule Tex.Articles do
     |> Repo.preload(user: :account)
     |> Repo.preload(:likes)
     |> Repo.preload(:views)
+    |> Repo.preload(:comments)
   end
   @doc """
   Creates a post.
@@ -351,9 +352,11 @@ defmodule Tex.Articles do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_comment(attrs \\ %{}) do
+  def create_comment(user_id, post_id, attrs \\ %{}) do
     %Comment{}
     |> Comment.changeset(attrs)
+    |> Ecto.Changeset.put_change(:user_id, user_id)
+    |> Ecto.Changeset.put_change(:post_id, post_id)
     |> Repo.insert()
   end
 

@@ -24,6 +24,7 @@ defmodule TexWeb.Router do
     resources "/accounts", AccountController, only: [:show, :index]
     resources "/invitations", InvitationController, only: [:create]
     resources "/friendships", FriendshipController, only: [:create]
+    resources "/comments", CommentController, only: [:create]
     get "/", PostController, :index
   end
 

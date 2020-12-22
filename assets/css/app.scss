@@ -109,3 +109,17 @@ body {
         border-radius: 50%;
     }
 }
+
+@media screen and (max-width: 539px) {
+.sidebar {
+    width: 100%;
+    left: -100%;
+}
+}
+
+@media screen and (max-width: 992px) {
+.sidebar {
+    width: 75%;
+    left: -75%;
+}
+}

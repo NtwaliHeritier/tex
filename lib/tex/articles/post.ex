@@ -3,7 +3,7 @@ defmodule Tex.Articles.Post do
   import Ecto.Changeset
   use Arc.Ecto.Schema
   alias Tex.Accounts.User
-  alias Tex.Articles.{Like, View}
+  alias Tex.Articles.{Like, View, Comment}
 
   schema "posts" do
     field :content, :string
@@ -12,6 +12,7 @@ defmodule Tex.Articles.Post do
     belongs_to :user, User
     has_many :likes, Like
     has_many :views, View
+    has_many :comments, Comment
 
     timestamps()
   end

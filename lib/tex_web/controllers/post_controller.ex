@@ -36,7 +36,9 @@ defmodule TexWeb.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Articles.get_post!(id)
-    render(conn, "show.html", post: post)
+    conn
+    |> assign(:post, post)
+    |> render("show.html")
   end
 
   def edit(conn, %{"id" => id}) do
