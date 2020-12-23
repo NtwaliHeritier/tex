@@ -35,6 +35,14 @@ To get this project up and running locally, you must already have elixir and pho
 
 [Live Demo Link](https://shrouded-basin-98979.herokuapp.com/)
 
+## Screenshots
+# HOME
+![screenshot](/images/screenshot/home.PNG)
+# INVITATION
+![screenshot](/images/screenshot/invitations.PNG)
+# POST VIEW
+![screenshot](/images/screenshot/view.PNG)
+
 ## Author Details::
 
 👤 **NTWALI Heritier**
