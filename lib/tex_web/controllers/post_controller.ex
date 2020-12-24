@@ -23,6 +23,8 @@ defmodule TexWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
+    {:ok, %Cloudex.UploadedImage{public_id: pid}} = Cloudex.upload(post_params["image"].path)
+    post_params = Map.put(post_params, "image", pid)
     case Articles.create_post(conn.assigns.current_user, post_params) do
       {:ok, post} ->
         conn

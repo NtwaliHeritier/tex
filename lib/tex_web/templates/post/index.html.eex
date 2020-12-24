@@ -9,7 +9,7 @@
               <div class="columns">
                 <div class="d-flex topic flex-column">
                     <div class="topic-img">
-                        <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>" alt="">
+                        <img src="<%= Cloudex.Url.for(post.image)%>" alt="">
                     </div>
                     <div class="topic-title bg-white"><p class="font-weight-bold text-center">
                     <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <%= link to: Routes.account_path(@conn, :show, post.user.account.id) do%>
-                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" class="topic-author" alt="">
+                <img src="<%= Cloudex.Url.for(post.user.account.image_path)%>" class="topic-author" alt="">
                 <% end %>
               </div>
               <%end%>
@@ -80,7 +80,7 @@
                 <%= for post <- @conn.assigns[:viewed_posts] do %>
                   <div class="read-post">
                     <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img" do%>
-                    <img class="w-100 h-100" src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
+                    <img class="w-100 h-100" src="<%= Cloudex.Url.for(post.user.account.image_path) %>" alt="">
                     <% end %>
                     <div class="read-post-content">
                       <span class="font-weight-bold ml-2"><%= String.capitalize(post.user.account.username)%></span>
@@ -118,7 +118,7 @@
                 <%= for post <- @conn.assigns[:liked_posts] do %>
                   <div class="read-post">
                     <%= link to: Routes.account_path(@conn, :show, post.user.account.id), class: "featured-img" do%>
-                    <img class="w-100 h-100" src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" alt="">
+                    <img class="w-100 h-100" src="<%= Cloudex.Url.for(post.user.account.image_path)%>" alt="">
                     <% end %>
                     <div class="read-post-content">
                       <span class="font-weight-bold ml-2"><%= String.capitalize(post.user.account.username)%></span>
