@@ -1,6 +1,6 @@
 defmodule Tex.Accounts.UserHandling do
     alias Tex.Accounts.User
-    alias Tex.Articles.Like
+    alias Tex.Articles.{Like, Post}
     alias Tex.Friendship.Invitation
     alias Tex.Repo
     import Ecto.Query
@@ -8,8 +8,25 @@ defmodule Tex.Accounts.UserHandling do
     def get_user_account_info(user) do
         User
         |> Repo.get!(user.id)
-        |> Repo.preload([:account, :followees])
+        |> Repo.preload(:account)
+        |> Repo.preload(:followees)
         |> Repo.preload(posts: [:likes, :comments, :views, user: :account])
+    end
+
+    def get_followee_posts(user) do
+        current_user = User |> Repo.get!(user.id) |> Repo.preload(:followees)
+        followee_ids = get_followee_id(current_user.followees, [])
+        query = from(p in Post, where: p.user_id == ^current_user.id or p.user_id in ^followee_ids)
+        query
+        |> Repo.all
+        |> Repo.preload([:likes, :comments, :views, user: :account])
+    end
+
+    def get_followee_id([], list), do: list
+
+    def get_followee_id(followees, list) do
+        list = list ++ [hd(followees).id]
+        get_followee_id(tl(followees), list)
     end
 
     def get_count(invitations, _user_id, a) when invitations == [], do: a

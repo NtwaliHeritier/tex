@@ -28,7 +28,7 @@
       <div>
         <%= if @conn.assigns[:current_user].id != @account.user.id do%>
           <%= if length(Tex.Accounts.UserHandling.get_follow_info(@conn.assigns[:current_user], @account.user)) > 0 do%>
-            <h5 class="followed-btn">Already following</h5>
+            <h5 class="followed-btn"></h5>
           <% else %>
             <%= form_for @conn, Routes.invitation_path(@conn, :create), [as: :invitation], fn f->%>
             <%=hidden_input f, :invitee_id, value: @account.user.id%>
