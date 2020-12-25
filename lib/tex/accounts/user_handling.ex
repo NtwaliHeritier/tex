@@ -1,7 +1,7 @@
 defmodule Tex.Accounts.UserHandling do
     alias Tex.Accounts.User
     alias Tex.Articles.Like
-    alias Tex.Friendship.Friend
+    alias Tex.Friendship.Invitation
     alias Tex.Repo
     import Ecto.Query
 
@@ -29,7 +29,7 @@ defmodule Tex.Accounts.UserHandling do
     end
 
     def get_follow_info(follower, followee) do
-        query = from(f in Friend, where: f.follower_id == ^follower.id and f.followee_id == ^followee.id)
+        query = from(f in Invitation, where: f.invitor_id == ^follower.id and f.invitee_id == ^followee.id)
         Repo.all(query)
     end
 
