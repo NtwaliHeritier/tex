@@ -33,7 +33,7 @@ To get this project up and running locally, you must already have elixir and pho
 
 ## Live Demo
 
-[Live Demo Link](https://pacific-chamber-56103.herokuapp.com/)
+[Live Demo Link](https://stormy-springs-05530.herokuapp.com/)
 
 ## Author Details::
 
