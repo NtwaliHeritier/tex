@@ -25,7 +25,7 @@
 }
 
 .author-info {
-    width: 12%;
+    width: 17%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,7 +45,7 @@
 .post-likes {
     display: flex;
     justify-content: space-between;
-    min-width: 22%;
+    min-width: 35%;
 }
 
 .like-btn {
@@ -57,11 +57,11 @@
 
 @media screen and (max-width: 992px) {
     .author-info {
-        width: 16%;
+        width: 22%;
     }
 
     .post-likes {
-        min-width: 25%;
+        min-width: 35%;
     }
 }
 
@@ -70,10 +70,24 @@
         width: 14%;
     }
 
+    .post-heading {
+        flex-direction: column;
+    }
+
+    .author-info {
+        width: 25%;
+    }
+
     .post-likes {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-width: 20%;
+        justify-content: space-around;
+        width: 100%;
     }
+}
+
+@media screen and (max-width: 600px) {
+.author-info {
+    width: 50%;
+    margin-bottom: 2%;
+}
 }
