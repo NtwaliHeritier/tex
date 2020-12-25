@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :tex, TexWeb.Endpoint,
 http: [port: {:system, "PORT"}],
-url: [scheme: "https", host: "pacific-chamber-56103.herokuapp.com", port: 443],
+url: [scheme: "https", host: "stormy-springs-05530.herokuapp.com", port: 443],
 force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
