@@ -44,7 +44,7 @@
               <div class="columns">
                 <div class="d-flex topic flex-column">
                     <div class="topic-img">
-                        <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.image, []}))%>" alt="">
+                        <img src="<%= Cloudex.Url.for(post.image)%>" alt="">
                     </div>
                     <div class="topic-title bg-white"><p class="font-weight-bold text-center">
                     <%= form_for @conn, Routes.view_path(@conn, :create), [as: :view], fn f ->%>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <%= link to: Routes.account_path(@conn, :show, post.user.account.id) do%>
-                <img src="<%= Routes.static_path(@conn, Tex.ImageUploader.url({post.user.account.image_path, []}))%>" class="topic-author" alt="">
+                <img src="<%= Cloudex.Url.for(post.user.account.image_path)%>" class="topic-author" alt="">
                 <% end %>
               </div>
               <%end%>
