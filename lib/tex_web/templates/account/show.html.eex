@@ -2,6 +2,15 @@
       <div class="profile-img">
         <img src="<%= Cloudex.Url.for(@account.image_path)%>" alt="">
       </div>
+      <div class="fullname">
+        <div class= "font-weight-bold"><%=String.upcase(@account.first_name)%> <%=String.capitalize(@account.last_name)%></div>
+        <div class= "font-weight-bold"><%=String.capitalize(@account.username)%></div>
+      </div>
+    </div>
+
+    <%= render "follow.html", assigns%>
+
+    <div class="profile-names mt-5">
       <div class="profile-specs">
         <div class="profile-spec">
           <span><%= length(@account.user.posts)%> <%= if length(@account.user.posts)==1, do: "POST", else: "POSTS"%></span>
@@ -15,15 +24,7 @@
           <a class="a notification-btn text-dark" type="button" data-toggle="modal" data-target="#followerModal"><%= length(@account.user.followers)%> FOLLOWERS</a></span>
         </div>
       </div>
-    </div>
 
-    <%= render "follow.html", assigns%>
-
-    <div class="profile-names mt-2">
-      <div class="fullname">
-        <div class= "font-weight-bold"><%=String.upcase(@account.first_name)%> <%=String.capitalize(@account.last_name)%></div>
-        <div class= "font-weight-bold"><%=String.capitalize(@account.username)%></div>
-      </div>
       <div>
         <%= if @conn.assigns[:current_user].id != @account.user.id do%>
           <%= if length(Tex.Accounts.UserHandling.get_follow_info(@conn.assigns[:current_user], @account.user)) > 0 do%>

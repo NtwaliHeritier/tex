@@ -11,7 +11,7 @@
                                 <div class="alert alert-danger">
                                 <p>Oops, something went wrong! Please check the errors below.</p>
                                 </div>
-                            <% end %>                            
+                            <% end %>
                             <%= inputs_for f, :account, fn cf -> %>
                             <div class="input-flex">
                                 <%=text_input cf, :first_name, placeholder: "First name", class: "py-2 my-2 input"%>
@@ -22,7 +22,6 @@
                             </div>
                             <div class="inputs">
                                 <%=text_input cf, :phone, placeholder: "Phone", class: "py-2 my-2 input"%>
-                                <span class="d-block">Hint: "phone start with +250"</span>
                             </div>
                             <div class="input-flex">
                                 <%=text_input cf, :country, placeholder: "Country", class: "py-2 my-2 input"%>

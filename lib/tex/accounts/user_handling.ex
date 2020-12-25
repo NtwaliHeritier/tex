@@ -32,4 +32,11 @@ defmodule Tex.Accounts.UserHandling do
         query = from(f in Friend, where: f.follower_id == ^follower.id and f.followee_id == ^followee.id)
         Repo.all(query)
     end
+
+    def get_all(current_user) do
+        query = from(u in User, where: u.id != ^current_user.id)
+        query
+        |> Repo.all
+        |> Repo.preload(:account)
+    end
 end

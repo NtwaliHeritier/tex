@@ -20,9 +20,10 @@
           <h5 class="text-white mt-3"><%=link String.capitalize(Tex.Accounts.UserHandling.get_user_account_info(@current_user).account.username), to: Routes.account_path(@conn, :show, @current_user)%></h5>
         </div>
         <ul>
+          <li><%=link "Home", to: Routes.post_path(@conn, :index), class: "a"%></li>
             <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#saveModal">Add a post</a></li>
-            <li><%=link "Home", to: Routes.post_path(@conn, :index), class: "a"%></li>
             <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#exampleModal">Notifications(<%= if @conn.assigns[:unconfirmed_invitations], do: Tex.Accounts.UserHandling.get_count(@conn.assigns[:unconfirmed_invitations], @current_user.id, 0), else: "0"%>)</a></li>
+            <li><a class="a notification-btn" type="button" data-toggle="modal" data-target="#suggestionModal">Suggestions</a></li>
             <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "a"%></li>
         </ul>
     </div>
